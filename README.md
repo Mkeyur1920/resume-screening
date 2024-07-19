@@ -1,2 +1,2 @@
-# resume-screeninng
+# resume-screening
 😀(❁´◡`❁)
