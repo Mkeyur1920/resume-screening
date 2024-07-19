@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Resume Screening</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <center>
+    <h1 style="text-align:center"> Resume Screening </h1>
+    <form
+      method="POST"
+      action="/upload"
+      enctype="multipart/form-data"
+      id="uploadForm"
+    >
+      <label for="file">Upload your resume:</label>
+      <input type="file" id="file" name="file" required />
+      <input type="submit" value="Upload" />
+    </form>
+    <div id="response"></div>
+
+    <script>
+      document.getElementById("uploadForm").onsubmit = async function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const responseDiv = document.getElementById("response");
+        responseDiv.innerHTML = "Uploading...";
+        const response = await fetch("/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const result = await response.text();
+        responseDiv.innerHTML = result;
+      };
+    </script>
+  </body>
+</html>
