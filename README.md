@@ -8,7 +8,13 @@
 
 <!-- for WINDOWS -->
 
+####run cmd...
+
 1. python -m venv <env_name>
+
+####activate the virtual env !
+
+env_name\Scripts\activate
 
 <!-- first install libraries in environments  -->
 
